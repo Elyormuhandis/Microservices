@@ -10,7 +10,7 @@ public interface PeopleService {
     public List<PersonDto> getPeople();
     public PersonDto getPerson(Long personId);
     public PersonDto createPerson(PersonDto personDto);
-    public PersonDto updatePerson(PersonDto personDto, Long personId);
+    public PersonDto updatePerson(PersonDto personDto);
 
     public String deletePerson(Long personId);
 }

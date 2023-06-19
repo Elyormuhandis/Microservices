@@ -1,14 +1,16 @@
 package uz.muhandis.microservicescourse.mapper;
 
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 import uz.muhandis.microservicescourse.dto.PersonDto;
 import uz.muhandis.microservicescourse.entity.Person;
 
-public class PersonMapper {
-    public static PersonDto personToPersonDto(Person person) {
-        return new PersonDto(person.getId(), person.getFirstName(), person.getLastName(), person.getEmail());
-    }
+@Mapper
+public interface PersonMapper {
 
-    public static Person personDtoToPerson(PersonDto personDto) {
-        return new Person(personDto.getId(), personDto.getFirstName(), personDto.getLastName(), personDto.getEmail());
-    }
+    PersonMapper MAPPER = Mappers.getMapper(PersonMapper.class);
+
+    PersonDto personToPersonDto(Person person);
+
+    Person personDtoToPerson(PersonDto personDto);
 }
