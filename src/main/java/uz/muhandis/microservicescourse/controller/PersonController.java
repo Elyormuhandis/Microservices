@@ -1,17 +1,12 @@
 package uz.muhandis.microservicescourse.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
 import uz.muhandis.microservicescourse.dto.PersonDto;
-import uz.muhandis.microservicescourse.exceptions.ErrorDetails;
-import uz.muhandis.microservicescourse.exceptions.ResourceNotFoundException;
 import uz.muhandis.microservicescourse.service.PeopleService;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -33,12 +28,12 @@ public class PersonController {
     }
 
     @PostMapping
-    public ResponseEntity<PersonDto> savePerson(@RequestBody PersonDto personDto) {
+    public ResponseEntity<PersonDto> savePerson(@RequestBody @Valid PersonDto personDto) {
         return ResponseEntity.ok(peopleService.createPerson(personDto));
     }
 
     @PutMapping
-    public ResponseEntity<PersonDto> updatePerson(@RequestBody PersonDto personDto) {
+    public ResponseEntity<PersonDto> updatePerson(@RequestBody @Valid PersonDto personDto) {
         return ResponseEntity.ok(peopleService.updatePerson(personDto));
     }
 
