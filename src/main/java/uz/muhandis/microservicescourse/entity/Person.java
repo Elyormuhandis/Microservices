@@ -2,13 +2,10 @@ package uz.muhandis.microservicescourse.entity;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Entity
@@ -34,9 +31,13 @@ public class Person {
     @Column(nullable = false)
     private Integer age;
 
-    @Column(name="created_date", nullable = false, updatable = false)
     @CreatedDate
+    @Column(name="created_date", nullable = false, updatable = false)
     private LocalDateTime createdDate;
+
+    @LastModifiedDate
+    @Column(name="last_modified_date", nullable = false, updatable = false)
+    private LocalDateTime lastModifiedDate;
 
 
 }

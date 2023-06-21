@@ -14,9 +14,8 @@ public interface PersonMapper {
     PersonMapper MAPPER = Mappers.getMapper(PersonMapper.class);
 
 
-    PersonDto personToPersonDto(Person person);
-
-    @Mapping(target = "age", defaultValue = "15")
-    @Mapping(target="createdDate",ignore = true, defaultExpression = "java(java.time.LocalDateTime.now())")
-    Person personDtoToPerson(PersonDto personDto);
+    PersonDto personToDto(Person person);
+    @Mapping(target = "createdDate", ignore = true)
+    @Mapping(target = "lastModifiedDate", ignore = true)
+    Person dtoToPerson(PersonDto personDto);
 }

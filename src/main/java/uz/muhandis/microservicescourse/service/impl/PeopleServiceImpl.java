@@ -24,13 +24,13 @@ public class PeopleServiceImpl implements PeopleService {
     @Override
     public List<PersonDto> getPeople() {
         List<Person> people = peopleRepository.findAll();
-        return people.stream().map(person -> PersonMapper.MAPPER.personToPersonDto(person)).collect(Collectors.toList());
+        return people.stream().map(person -> PersonMapper.MAPPER.personToDto(person)).collect(Collectors.toList());
     }
 
     @Override
     public PersonDto getPerson(final Long personId) {
         Person person = peopleRepository.findById(personId).orElseThrow(() -> new ResourceNotFoundException("Person", "id", personId));
-        return PersonMapper.MAPPER.personToPersonDto(person);
+        return PersonMapper.MAPPER.personToDto(person);
     }
 
     @Override
@@ -39,8 +39,8 @@ public class PeopleServiceImpl implements PeopleService {
         if (optionalPerson.isPresent()){
             throw new EmailAlreadyExistsException("Email already exists for person");
         }
-        Person person = peopleRepository.save(PersonMapper.MAPPER.personDtoToPerson(personDto));
-        return PersonMapper.MAPPER.personToPersonDto(person);
+        Person person = peopleRepository.save(PersonMapper.MAPPER.dtoToPerson(personDto));
+        return PersonMapper.MAPPER.personToDto(person);
     }
 
 
@@ -51,7 +51,7 @@ public class PeopleServiceImpl implements PeopleService {
                 new ResourceNotFoundException("Person", "id", personDto.getId()));
         person = modelMapper.map(personDto, Person.class);
         Person updatedPerson = peopleRepository.save(person);
-        return PersonMapper.MAPPER.personToPersonDto(updatedPerson);
+        return PersonMapper.MAPPER.personToDto(updatedPerson);
     }
 
     @Override
