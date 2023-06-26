@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
-@EnableJpaAuditing
 @OpenAPIDefinition(
         info = @Info(
                 title = "Spring boot REST API Documentation",

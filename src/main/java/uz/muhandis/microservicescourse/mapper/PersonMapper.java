@@ -15,7 +15,7 @@ public interface PersonMapper {
 
 
     PersonDto personToDto(Person person);
-    @Mapping(target = "createdDate", ignore = true)
-    @Mapping(target = "lastModifiedDate", ignore = true)
+    @Mapping(target = "createdDate", expression = "java(LocalDateTime.now())")
+    @Mapping(target = "lastModifiedDate", expression = "java(LocalDateTime.now())")
     Person dtoToPerson(PersonDto personDto);
 }
